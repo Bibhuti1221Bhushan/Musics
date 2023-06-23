@@ -1,0 +1,170 @@
+
+//     ██╗    ██╗ █████╗ ██╗   ██╗██████╗  █████╗ ██████╗ 
+//     ██║    ██║██╔══██╗╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+//     ██║ █╗ ██║███████║ ╚████╔╝ ██████╔╝███████║██████╔╝
+//     ██║███╗██║██╔══██║  ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+//     ╚███╔███╔╝██║  ██║   ██║   ██████╔╝██║  ██║██║  ██║
+//      ╚══╝╚══╝ ╚═╝  ╚═╝   ╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+                                                   
+{
+    "layer": "top",
+    "position": "top",
+    "mod": "dock",
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "modules-left": [
+        "custom/apple",
+        "clock#time",
+        "clock#date",
+        "wlr/workspaces"
+    ],
+    "modules-center": ["hyprland/window"],
+    "modules-right": [
+        "memory",
+        // "cpu",
+        "network",
+        "battery",
+        "backlight",
+        "pulseaudio",
+        "pulseaudio#microphone",
+        "tray",
+    ],
+
+
+    "clock#time": {
+        "interval": 10,
+        "format": " {:%I:%M %p}", 
+        "tooltip-format": "{:%r}",
+        "tooltip": false,        
+    },
+
+    "clock#date": {
+        "interval": 20,
+        "format": "{:󰔠 %d-%m-%y}",
+        "tooltip-format": "{:%a : %e-%B-%Y}",
+        "tooltip": false,
+    },
+
+    "wlr/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "on-click": "activate",
+        "format": "{icon}",
+        "format-icons": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "10": "10",
+            "11": "11",
+            "12": "12",
+            "13": "13",
+            "14": "14",
+            "15": "15",
+        }
+    },
+
+    "hyprland/window": {
+        "format": "{}"
+    },
+
+    "tray": {
+        "icon-size": 13,
+        "spacing": 10,
+    },
+
+    "memory": {
+        "interval": 10,
+        "format": " {used:0.1f} G",
+        // "format": " {}%",
+        "states": {
+            "warning": 70,
+            "critical": 90,
+        },
+        "tooltip": false,
+        "tooltip-format": "{total:0.1f} Gib : {used:1f} Gib : {}%",
+    },
+
+     "cpu": {
+        // "format": " {load} Ghz",
+        "format": " {usage}%",
+        "interval": 10,
+        "tooltip": false,
+    },
+
+    "network": {
+        "format-wifi": "󰉊 {essid}:{signalStrength}%",
+        "format-ethernet": "{ifname}",
+        "format-disconnected": "  Disconnected",
+        "tooltip-format-wifi": "Wi-Fi : {essid}",
+        "tooltip-format-disconnected": "Disconnected",
+        "tooltip": false,
+    },
+
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 20
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon} {time}",
+        "format-icons": ["󰪞", "󰪟", "󰪠", "󰪡", "󰪢", "󰪣", "󰪤", "󰪥"],
+        "tooltip": false,
+    },
+ 
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["󰃝", ""],
+        "on-scroll-up": "brightnessctl set 1%+",
+        "on-scroll-down": "brightnessctl set 1%-",
+        "on-click": "brightnessctl set 69%",  
+        "tooltip": false,
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": " Muted",
+        "on-click": "pamixer -t",
+        "on-scroll-up": "pamixer -i 5",
+        "on-scroll-down": "pamixer -d 5",
+        "scroll-step": 5,
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "tooltip": false,
+    },
+
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "format-source": " {volume}%",
+        "format-source-muted": " Muted",
+        "on-click": "pamixer --default-source -t",
+        "on-scroll-up": "pamixer --default-source -i 5",
+        "on-scroll-down": "pamixer --default-source -d 5",
+        "scroll-step": 5,
+        "tooltip": false,
+    },
+
+    "custom/apple": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "killall rofi || rofi -show drun # -theme ~/.config/rofi/rofi.Bibhuti/rofi.rasi"
+    },
+}
+

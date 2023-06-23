@@ -1,0 +1,27 @@
+#!/bin/bash
+
+
+#	 ██████╗ ██████╗ ██╗      ██████╗ ██████╗     ██████╗ ██╗ ██████╗██╗  ██╗███████╗██████╗ 
+#	██╔════╝██╔═══██╗██║     ██╔═══██╗██╔══██╗    ██╔══██╗██║██╔════╝██║ ██╔╝██╔════╝██╔══██╗
+#	██║     ██║   ██║██║     ██║   ██║██████╔╝    ██████╔╝██║██║     █████╔╝ █████╗  ██████╔╝
+#	██║     ██║   ██║██║     ██║   ██║██╔══██╗    ██╔═══╝ ██║██║     ██╔═██╗ ██╔══╝  ██╔══██╗
+#	╚██████╗╚██████╔╝███████╗╚██████╔╝██║  ██║    ██║     ██║╚██████╗██║  ██╗███████╗██║  ██║
+#	 ╚═════╝ ╚═════╝ ╚══════╝ ╚═════╝ ╚═╝  ╚═╝    ╚═╝     ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
+                                                                                         
+
+color=$(grim -g "$(slurp -b 1B1F2800 -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | tail -n1 | cut -d' ' -f4)
+image=/tmp/${color}.png
+
+main() {
+	if [[ "$color" ]]; then
+		# COPY COLOR CODE TO CLIPBOARD
+		echo $color | tr -d "\n" | wl-copy
+		# GENERATE PREVIEW
+		convert -size 48x48 xc:"$color" ${image}
+		# NOTIFY ABOUT IT
+		notify-send -h string:x-canonical-private-synchronous:sys-notify -u low -i ${image} "$color, Copied to Clipboard."
+	fi
+}
+
+# RUN THE SCRIPT
+main
