@@ -19,7 +19,7 @@ export VISUAL='subl'       # --SET SUBLIME-TEXT AS DEFAULT VISUAL EDITOR
 #  █▀▀   █▀▀   █▄ █   █▀▀   █▀█   ▄▀█   █  
 #  █▄█   ██▄   █ ▀█   ██▄   █▀▄   █▀█   █▄▄
  
-# SET OH-MY-ZSH THEMES
+# SET OH-MY-ZSH THEMES 
 ZSH_THEME="robbyrussell"
 
 # UNCOMMENT THE FOLLOWING LINE TO USE CASE-SENSITIVE COMPLETION.
